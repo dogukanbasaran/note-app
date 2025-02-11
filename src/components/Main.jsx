@@ -12,11 +12,14 @@ const Main = () => {
         id="container"
       >
         {" "}
-        <div className="flex justify-center gap-[20px] h-[20%]">
+        <div className="flex justify-center w-[100%] gap-[20px] h-[20%]">
           <SearchInput />
-          <Button icon={<AddIcon fontSize="large" />} text={"Note"} />
+          <Button icon={<AddIcon sx={{ fontSize: "30px" }} />} text={"Note"} />
         </div>
-        <div className="h-[auto] w-[100%] md:w-[82.5%] grid grid-cols-1 lg:grid-cols-2  place-items-center gap-y-[40px] border">
+        <div className="h-[auto] min-[768px]:w-[700px] grid min-[768px]:grid-cols-2 min-[1280px]:w-[1050px] min-[1280px]:grid-cols-3 gap-y-[40px]">
+          <NoteCard />
+          <NoteCard />
+          <NoteCard />
           <NoteCard />
           <NoteCard />
           <NoteCard />
