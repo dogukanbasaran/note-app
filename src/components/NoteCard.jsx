@@ -13,13 +13,13 @@ const NoteCard = () => {
       </p>
       <img
         className="absolute bottom-0 right-[-30px]  -rotate-30"
-        src="src\assets\img\tape1.png"
+        src="/img/tape1.png"
         alt="tape"
         width={100}
       />
       <img
         className="absolute top-0 left-[-30px] -rotate-30"
-        src="src/assets/img/tape2.png"
+        src="/img/tape2.png"
         alt="tape"
         width={100}
       />
