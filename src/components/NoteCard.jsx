@@ -1,8 +1,3 @@
-// import FormatBoldIcon from "@mui/icons-material/FormatBold";
-// import FormatItalicIcon from "@mui/icons-material/FormatItalic";
-// import CheckIcon from "@mui/icons-material/Check";
-// <div className="h-[10%] w-[100%] px-[10px] flex items-center justify-between border-t border-slate-400/60"></div>
-
 const NoteCard = () => {
   return (
     <div className="h-[300px] w-[300px] text-black bg-white relative justify-self-center">
