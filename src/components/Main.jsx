@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import SearchInput from "./SearchInput";
 import Button from "./Button";
@@ -8,30 +8,50 @@ import CreateCard from "./CreateCard";
 import AddIcon from "@mui/icons-material/Add";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
-const notes = [
-  // "merhabalar ben dogukan selamlar",
-  // "ben ekinsu ulgen selamlar",
-  // "bla bla bla bla",
-  // "ben kodlama öğreniyorum",
-  // "aaaaaaa",
-];
-
 const Main = () => {
   const [visibility, setVisibility] = useState(false);
+  const [noteCards, setNoteCards] = useState([]);
+  const [noteText, setNoteText] = useState("");
+  const [cardCreated, setCardCreated] = useState(false);
 
   function handleVisibility() {
     setVisibility(true);
   }
 
+  function handleCreateCard() {
+    if (noteText == "") return;
+    const newCard = {
+      id: Date.now(),
+      text: noteText,
+    };
+    setNoteCards((prevCards) => [...prevCards, newCard]);
+    setNoteText("");
+    setCardCreated(true);
+  }
+
+  useEffect(() => {
+    if (cardCreated) {
+      setVisibility(false);
+      setCardCreated(false);
+    }
+  }, [cardCreated]);
+
   return (
     <main className="h-[auto] py-[100px]">
-      {visibility ? <CreateCard setVisibility={setVisibility} /> : null}
+      {visibility ? (
+        <CreateCard
+          noteText={noteText}
+          setVisibility={setVisibility}
+          setNoteText={setNoteText}
+          onHandleCreateCard={handleCreateCard}
+        />
+      ) : null}
       <div
         className="h-[100%] w-[90%] m-auto flex flex-col gap-[100px]  items-center"
         id="container"
       >
         {" "}
-        {notes.length > 0 ? (
+        {noteCards.length > 0 ? (
           <div
             className={`flex justify-center w-[100%] gap-[20px] h-[20%] ${
               visibility ? "blur-sm" : "blur-none"
@@ -50,8 +70,10 @@ const Main = () => {
             visibility ? "blur-sm" : "blur-none"
           }`}
         >
-          {notes.length > 0 ? (
-            notes.map((note, i) => <NoteCard key={i} note={note} />)
+          {noteCards.length > 0 ? (
+            noteCards.map((noteCard) => (
+              <NoteCard text={noteCard.text} key={noteCard.id} />
+            ))
           ) : (
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-[100%] w-[100%] flex justify-center items-center">
               <button
