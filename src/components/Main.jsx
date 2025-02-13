@@ -3,9 +3,18 @@ import { useState } from "react";
 import SearchInput from "./SearchInput";
 import Button from "./Button";
 import NoteCard from "./NoteCard";
+import CreateCard from "./CreateCard";
 
 import AddIcon from "@mui/icons-material/Add";
-import CreateCard from "./CreateCard";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+
+const notes = [
+  // "merhabalar ben dogukan selamlar",
+  // "ben ekinsu ulgen selamlar",
+  // "bla bla bla bla",
+  // "ben kodlama öğreniyorum",
+  // "aaaaaaa",
+];
 
 const Main = () => {
   const [visibility, setVisibility] = useState(false);
@@ -22,35 +31,40 @@ const Main = () => {
         id="container"
       >
         {" "}
+        {notes.length > 0 ? (
+          <div
+            className={`flex justify-center w-[100%] gap-[20px] h-[20%] ${
+              visibility ? "blur-sm" : "blur-none"
+            }`}
+          >
+            <SearchInput />
+            <Button
+              onHandleVisibility={handleVisibility}
+              icon={<AddIcon sx={{ fontSize: "30px" }} />}
+              text={"Note"}
+            />
+          </div>
+        ) : null}
         <div
-          className={`flex justify-center w-[100%] gap-[20px] h-[20%] ${
+          className={`relative min-h-[65vh] h-[auto] w-[100%] min-[768px]:w-[700px] grid min-[768px]:grid-cols-2 min-[1280px]:w-[1050px] min-[1280px]:grid-cols-3 gap-y-[40px] ${
             visibility ? "blur-sm" : "blur-none"
           }`}
         >
-          <SearchInput />
-          <Button
-            onHandleVisibility={handleVisibility}
-            icon={<AddIcon sx={{ fontSize: "30px" }} />}
-            text={"Note"}
-          />
-        </div>
-        <div
-          className={`h-[auto] min-[768px]:w-[700px] grid min-[768px]:grid-cols-2 min-[1280px]:w-[1050px] min-[1280px]:grid-cols-3 gap-y-[40px] ${
-            visibility ? "blur-sm" : "blur-none"
-          }`}
-        >
-          <NoteCard />
-          <NoteCard />
-          <NoteCard />
-          <NoteCard />
-          <NoteCard />
-          <NoteCard />
-          <NoteCard />
-          <NoteCard />
-          <NoteCard />
-          <NoteCard />
-          <NoteCard />
-          <NoteCard />
+          {notes.length > 0 ? (
+            notes.map((note, i) => <NoteCard key={i} note={note} />)
+          ) : (
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-[100%] w-[100%] flex justify-center items-center">
+              <button
+                onClick={handleVisibility}
+                className="border border-dashed outline-none flex h-[60px] w-[300px] cursor-pointer flex items-center justify-center gap-[5px] text-[1.25rem] font-[700]"
+              >
+                <span>
+                  {<AddCircleOutlineIcon sx={{ fontSize: "30px" }} />}
+                </span>
+                <span>Create your first note</span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </main>
