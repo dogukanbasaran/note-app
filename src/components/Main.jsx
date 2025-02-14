@@ -12,6 +12,7 @@ const Main = () => {
   const [visibility, setVisibility] = useState(false);
   const [noteCards, setNoteCards] = useState([]);
   const [noteText, setNoteText] = useState("");
+  const [color, setColor] = useState(`bg-yellow-50`);
   const [cardCreated, setCardCreated] = useState(false);
 
   function handleVisibility() {
@@ -23,6 +24,7 @@ const Main = () => {
     const newCard = {
       id: Date.now(),
       text: noteText,
+      color: color,
     };
     setNoteCards((prevCards) => [...prevCards, newCard]);
     setNoteText("");
@@ -41,8 +43,10 @@ const Main = () => {
       {visibility ? (
         <CreateCard
           noteText={noteText}
+          color={color}
           setVisibility={setVisibility}
           setNoteText={setNoteText}
+          setColor={setColor}
           onHandleCreateCard={handleCreateCard}
         />
       ) : null}
@@ -72,7 +76,11 @@ const Main = () => {
         >
           {noteCards.length > 0 ? (
             noteCards.map((noteCard) => (
-              <NoteCard text={noteCard.text} key={noteCard.id} />
+              <NoteCard
+                color={noteCard.color}
+                text={noteCard.text}
+                key={noteCard.id}
+              />
             ))
           ) : (
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-[100%] w-[100%] flex justify-center items-center">
