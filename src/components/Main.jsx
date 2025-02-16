@@ -10,11 +10,13 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 const Main = () => {
   const [visibility, setVisibility] = useState(false);
-  const [noteCards, setNoteCards] = useState([]);
   const [noteText, setNoteText] = useState("");
   const [color, setColor] = useState(`bg-yellow-50`);
-  const [cardCreated, setCardCreated] = useState(false);
   const [fontStyle, setFontStyle] = useState("");
+  const [noteCards, setNoteCards] = useState(() => {
+    return JSON.parse(localStorage.getItem("noteCards")) || [];
+  });
+  const [cardCreated, setCardCreated] = useState(false);
 
   function handleVisibility() {
     setVisibility(true);
@@ -22,6 +24,7 @@ const Main = () => {
 
   function handleCreateCard() {
     if (noteText == "") return;
+
     const newCard = {
       id: Date.now(),
       text: noteText,
@@ -30,24 +33,33 @@ const Main = () => {
     };
     setNoteCards((prevCards) => [...prevCards, newCard]);
     setNoteText("");
+    setFontStyle("");
+    setColor(`bg-yellow-50`);
     setCardCreated(true);
   }
 
+  function handleDeleteCard() {
+    alert("deleted");
+  }
+
   function handleBoldText() {
-    setFontStyle(`font-bold`);
+    fontStyle == "" ? setFontStyle(`font-bold`) : setFontStyle("");
   }
 
   function handleItalicText() {
-    setFontStyle(`italic`);
+    fontStyle == "" ? setFontStyle(`italic`) : setFontStyle("");
   }
 
   useEffect(() => {
     if (cardCreated) {
       setVisibility(false);
       setCardCreated(false);
-      localStorage.setItem("key", "value");
     }
   }, [cardCreated]);
+
+  useEffect(() => {
+    localStorage.setItem("noteCards", JSON.stringify(noteCards));
+  }, [noteCards]);
 
   return (
     <main className="h-[auto] py-[100px]">
@@ -96,6 +108,7 @@ const Main = () => {
                 text={noteCard.text}
                 fontStyle={noteCard.fontStyle}
                 key={noteCard.id}
+                onHandleDeleteCard={handleDeleteCard}
               />
             ))
           ) : (

@@ -21,7 +21,7 @@ const CreateCard = ({
   const [isOpen, setIsOpen] = useState(false);
 
   function handleColorPalette() {
-    setIsOpen(true);
+    isOpen != true ? setIsOpen(true) : setIsOpen(false);
   }
 
   useEffect(() => {
@@ -124,9 +124,3 @@ const CreateCard = ({
 };
 
 export default CreateCard;
-
-/*
-Properties (for updating):
-- delete
-- copying notes
-*/
