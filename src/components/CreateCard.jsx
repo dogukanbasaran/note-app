@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import FormatBoldIcon from "@mui/icons-material/FormatBold";
 import FormatItalicIcon from "@mui/icons-material/FormatItalic";
@@ -10,16 +10,23 @@ import CreateBtn from "./CreateBtn";
 const CreateCard = ({
   noteText,
   color,
+  fontStyle,
   setVisibility,
   setNoteText,
   setColor,
   onHandleCreateCard,
+  onHandleBoldText,
+  onHandleItalicText,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   function handleColorPalette() {
     setIsOpen(true);
   }
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [color]);
 
   return (
     <div
@@ -30,7 +37,7 @@ const CreateCard = ({
       </div>
       <textarea
         maxLength={900}
-        className="w-[100%] h-[90%] p-[10px] outline-none resize-none"
+        className={`w-[100%] h-[90%] p-[10px] outline-none resize-none ${fontStyle}`}
         placeholder="Type anything to remember"
         value={noteText}
         onChange={(e) => {
@@ -38,10 +45,16 @@ const CreateCard = ({
         }}
       ></textarea>
       <div className="h-[10%] w-[100%] flex items-center justify-center gap-[20px]">
-        <button className="h-[40px] w-[40px] cursor-pointer">
+        <button
+          onClick={onHandleBoldText}
+          className="h-[40px] w-[40px] cursor-pointer"
+        >
           <FormatBoldIcon />
         </button>
-        <button className="h-[40px] w-[40px] cursor-pointer">
+        <button
+          onClick={onHandleItalicText}
+          className="h-[40px] w-[40px] cursor-pointer"
+        >
           <FormatItalicIcon />
         </button>
         <div className="relative" id="color-palette">

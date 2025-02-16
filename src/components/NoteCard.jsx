@@ -1,7 +1,9 @@
-const NoteCard = ({ text, color }) => {
+const NoteCard = ({ text, color, fontStyle }) => {
   return (
     <div className="h-[300px] w-[300px] text-black relative justify-self-center">
-      <p className={`h-[100%] px-[10px] py-[40px] ${color} break-words`}>
+      <p
+        className={`h-[100%] px-[10px] py-[40px] ${color} break-words ${fontStyle}`}
+      >
         {text.length > 300 ? text.slice(0, 300) + "..." : text}
       </p>
       <img

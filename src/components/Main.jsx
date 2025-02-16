@@ -14,6 +14,7 @@ const Main = () => {
   const [noteText, setNoteText] = useState("");
   const [color, setColor] = useState(`bg-yellow-50`);
   const [cardCreated, setCardCreated] = useState(false);
+  const [fontStyle, setFontStyle] = useState("");
 
   function handleVisibility() {
     setVisibility(true);
@@ -25,16 +26,26 @@ const Main = () => {
       id: Date.now(),
       text: noteText,
       color: color,
+      fontStyle: fontStyle,
     };
     setNoteCards((prevCards) => [...prevCards, newCard]);
     setNoteText("");
     setCardCreated(true);
   }
 
+  function handleBoldText() {
+    setFontStyle(`font-bold`);
+  }
+
+  function handleItalicText() {
+    setFontStyle(`italic`);
+  }
+
   useEffect(() => {
     if (cardCreated) {
       setVisibility(false);
       setCardCreated(false);
+      localStorage.setItem("key", "value");
     }
   }, [cardCreated]);
 
@@ -44,10 +55,14 @@ const Main = () => {
         <CreateCard
           noteText={noteText}
           color={color}
+          fontStyle={fontStyle}
           setVisibility={setVisibility}
           setNoteText={setNoteText}
           setColor={setColor}
+          setFontStyle={setFontStyle}
           onHandleCreateCard={handleCreateCard}
+          onHandleBoldText={handleBoldText}
+          onHandleItalicText={handleItalicText}
         />
       ) : null}
       <div
@@ -79,6 +94,7 @@ const Main = () => {
               <NoteCard
                 color={noteCard.color}
                 text={noteCard.text}
+                fontStyle={noteCard.fontStyle}
                 key={noteCard.id}
               />
             ))
