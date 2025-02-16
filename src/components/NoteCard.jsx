@@ -38,7 +38,7 @@ const NoteCard = ({ text, color, fontStyle, onHandleDeleteCard, id }) => {
         id="container"
         className={`${color}  h-[100%] w-[100%] ${
           isExpand
-            ? "h-[500px] w-[500px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100 border"
+            ? "absolute h-[400px] w-[350px] min-[768px]:h-[500px] min-[768px]:w-[500px]  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100 border"
             : null
         }`}
       >
