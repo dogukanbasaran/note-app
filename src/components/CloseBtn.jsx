@@ -1,8 +1,9 @@
 import CloseIcon from "@mui/icons-material/Close";
 
-const CloseBtn = ({ setVisibility }) => {
+const CloseBtn = ({ setVisibility, setDisplayCreateCard }) => {
   function handleVisibility() {
     setVisibility(false);
+    setDisplayCreateCard(false);
   }
 
   return (

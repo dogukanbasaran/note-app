@@ -38,8 +38,10 @@ const Main = () => {
     setCardCreated(true);
   }
 
-  function handleDeleteCard() {
-    alert("deleted");
+  function handleDeleteCard(id) {
+    setNoteCards((noteCards) =>
+      noteCards.filter((noteCard) => noteCard.id !== id)
+    );
   }
 
   function handleBoldText() {
@@ -97,13 +99,14 @@ const Main = () => {
           </div>
         ) : null}
         <div
-          className={`relative min-h-[65vh] h-[auto] w-[100%] min-[768px]:w-[700px] grid min-[768px]:grid-cols-2 min-[1280px]:w-[1050px] min-[1280px]:grid-cols-3 gap-y-[40px] ${
+          className={`min-h-[65vh] h-[auto] w-[100%] min-[768px]:w-[700px] grid min-[768px]:grid-cols-2 min-[1280px]:w-[1050px] min-[1280px]:grid-cols-3 gap-y-[40px] ${
             visibility ? "blur-sm" : "blur-none"
           }`}
         >
           {noteCards.length > 0 ? (
             noteCards.map((noteCard) => (
               <NoteCard
+                id={noteCard.id}
                 color={noteCard.color}
                 text={noteCard.text}
                 fontStyle={noteCard.fontStyle}
