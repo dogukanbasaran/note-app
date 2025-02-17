@@ -73,7 +73,7 @@ const Main = () => {
   );
 
   return (
-    <main className="h-[auto] py-[100px]">
+    <main className="h-[auto] py-[50px]">
       {visibility ? (
         <CreateCard
           noteText={noteText}
@@ -89,7 +89,7 @@ const Main = () => {
         />
       ) : null}
       <div
-        className="h-[100%] w-[90%] m-auto flex flex-col gap-[100px]  items-center"
+        className="h-[100%] w-[90%] m-auto flex flex-col gap-[0px]  items-center"
         id="container"
       >
         {" "}
@@ -108,7 +108,7 @@ const Main = () => {
           </div>
         ) : null}
         <div
-          className={`relative min-w-[300px] h-[700px] overflow-auto scrollbar-hide w-[auto]  grid min-[768px]:grid-cols-2  min-[1280px]:grid-cols-3  gap-[50px] p-[50px] ${
+          className={`relative mt-[50px] min-w-[300px] h-[700px] overflow-auto scrollbar-hide w-[auto]  grid min-[768px]:grid-cols-2  min-[1280px]:grid-cols-3  gap-[50px] ${
             visibility ? "blur-sm" : "blur-none"
           }`}
         >
