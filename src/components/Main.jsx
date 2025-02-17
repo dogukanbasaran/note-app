@@ -17,6 +17,7 @@ const Main = () => {
     return JSON.parse(localStorage.getItem("noteCards")) || [];
   });
   const [cardCreated, setCardCreated] = useState(false);
+  const [searchedText, setSearchedText] = useState("");
 
   function handleVisibility() {
     setVisibility(true);
@@ -44,6 +45,10 @@ const Main = () => {
     );
   }
 
+  function handleSearchedText(e) {
+    setSearchedText(e.target.value);
+  }
+
   function handleBoldText() {
     fontStyle == "" ? setFontStyle(`font-bold`) : setFontStyle("");
   }
@@ -62,6 +67,10 @@ const Main = () => {
   useEffect(() => {
     localStorage.setItem("noteCards", JSON.stringify(noteCards));
   }, [noteCards]);
+
+  const filteredNotes = noteCards.filter((noteCard) =>
+    noteCard.text.toLowerCase().includes(searchedText.toLowerCase())
+  );
 
   return (
     <main className="h-[auto] py-[100px]">
@@ -90,7 +99,7 @@ const Main = () => {
               visibility ? "blur-sm" : "blur-none"
             }`}
           >
-            <SearchInput />
+            <SearchInput onHandleSearchedText={handleSearchedText} />
             <Button
               onHandleVisibility={handleVisibility}
               icon={<AddIcon sx={{ fontSize: "30px" }} />}
@@ -99,12 +108,12 @@ const Main = () => {
           </div>
         ) : null}
         <div
-          className={`relative h-[700px] overflow-auto scrollbar-hide w-[auto]  grid min-[768px]:grid-cols-2  min-[1280px]:grid-cols-3  gap-[50px] p-[50px] ${
+          className={`relative min-w-[300px] h-[700px] overflow-auto scrollbar-hide w-[auto]  grid min-[768px]:grid-cols-2  min-[1280px]:grid-cols-3  gap-[50px] p-[50px] ${
             visibility ? "blur-sm" : "blur-none"
           }`}
         >
           {noteCards.length > 0 ? (
-            noteCards.map((noteCard) => (
+            filteredNotes.map((noteCard) => (
               <NoteCard
                 id={noteCard.id}
                 color={noteCard.color}
