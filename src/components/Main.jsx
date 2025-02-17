@@ -50,11 +50,19 @@ const Main = () => {
   }
 
   function handleBoldText() {
-    fontStyle == "" ? setFontStyle(`font-bold`) : setFontStyle("");
+    setFontStyle((prev) =>
+      prev.includes("font-bold")
+        ? prev.replace("font-bold", "").trim()
+        : `${prev} font-bold`.trim()
+    );
   }
 
   function handleItalicText() {
-    fontStyle == "" ? setFontStyle(`italic`) : setFontStyle("");
+    setFontStyle((prev) =>
+      prev.includes("italic")
+        ? prev.replace("italic", "").trim()
+        : `${prev} italic`.trim()
+    );
   }
 
   useEffect(() => {
@@ -73,7 +81,7 @@ const Main = () => {
   );
 
   return (
-    <main className="h-[auto] py-[50px]">
+    <main className={`h-[84vh] py-[50px] gap-[50px]`}>
       {visibility ? (
         <CreateCard
           noteText={noteText}
@@ -89,7 +97,7 @@ const Main = () => {
         />
       ) : null}
       <div
-        className="h-[100%] w-[90%] m-auto flex flex-col gap-[0px]  items-center"
+        className="h-[100%] w-[90%] m-auto flex flex-col gap-[0px] items-center"
         id="container"
       >
         {" "}
@@ -108,7 +116,7 @@ const Main = () => {
           </div>
         ) : null}
         <div
-          className={`relative mt-[50px] min-w-[300px] h-[700px] overflow-auto scrollbar-hide w-[auto]  grid min-[768px]:grid-cols-2  min-[1280px]:grid-cols-3  gap-[50px] ${
+          className={`h-[700px] overflow-auto scrollbar-hide w-[auto]  grid min-[768px]:grid-cols-2  min-[1280px]:grid-cols-3  gap-[50px] ${
             visibility ? "blur-sm" : "blur-none"
           }`}
         >

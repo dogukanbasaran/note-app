@@ -2,7 +2,7 @@ import SearchIcon from "@mui/icons-material/Search";
 
 const SearchInput = ({ onHandleSearchedText }) => {
   return (
-    <div className="border relative h-[50px] min-[768px]:h-[60px] w-[90%] min-[768px]:w-[600px] border border-slate-400/30 rounded-[15px]">
+    <div className="border relative h-[50px] min-[768px]:h-[60px] w-[80%] min-[768px]:w-[600px] border border-slate-400/30 rounded-[15px]">
       <div className="absolute top-[10px] min-[768px]:top-[15px] left-[10px] text-slate-400/80">
         <SearchIcon sx={{ fontSize: "30px" }} />
       </div>
