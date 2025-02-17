@@ -99,7 +99,7 @@ const Main = () => {
           </div>
         ) : null}
         <div
-          className={`min-h-[65vh] h-[auto] w-[100%] min-[768px]:w-[700px] grid min-[768px]:grid-cols-2 min-[1280px]:w-[1050px] min-[1280px]:grid-cols-3 gap-y-[40px] ${
+          className={`relative h-[700px] overflow-auto scrollbar-hide w-[auto]  grid min-[768px]:grid-cols-2  min-[1280px]:grid-cols-3  gap-[50px] p-[50px] ${
             visibility ? "blur-sm" : "blur-none"
           }`}
         >

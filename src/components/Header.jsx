@@ -1,11 +1,11 @@
 const Header = () => {
   return (
-    <header className="h-[50px]">
+    <header className="h-[100px]">
       <div
-        className="h-[100%] w-[90%] m-auto flex justify-between items-center"
+        className="h-[100%] w-[90%] m-auto flex justify-center items-center"
         id="container"
       >
-        <a href="#" className="text-[1.25rem] font-[700] uppercase">
+        <a href="#" className="text-[1.50rem] font-[700] uppercase">
           Note App
         </a>
       </div>

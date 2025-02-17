@@ -32,7 +32,7 @@ const NoteCard = ({ text, color, fontStyle, onHandleDeleteCard, id }) => {
 
   return (
     <div
-      className={`h-[300px] w-[300px] text-black justify-self-center flex flex-col border`}
+      className={`h-[300px] w-[300px] text-black justify-self-center flex flex-col`}
     >
       <div
         id="container"
